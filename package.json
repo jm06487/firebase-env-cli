@@ -1,0 +1,76 @@
+{
+  "name": "firebase-env-cli",
+  "version": "0.0.0",
+  "description": "Firebase Env CLI is a command-line interface (CLI) tool built using Oclif, designed to streamline the management of environment configurations for Firebase projects. With Firebase Env CLI, you can effortlessly manage environment variables, secrets, and configurations across your Firebase projects. The 'fire-env' command allows you to set, get, list, and delete environment variables, making it easy to maintain consistency and security in your Firebase applications. Whether you're a developer, project manager, or system administrator, Firebase Env CLI simplifies the management of environment configurations, enhancing your Firebase development and deployment workflows.",
+  "keywords": [
+    "oclif"
+  ],
+  "homepage": "https://github.com/jm06487/firebase-env-cli",
+  "bugs": "https://github.com/jm06487/firebase-env-cli/issues",
+  "repository": "jm06487/firebase-env-cli",
+  "license": "MIT",
+  "author": "Jaime Mac Gregor @jm06487",
+  "type": "module",
+  "exports": "./lib/index.js",
+  "main": "",
+  "types": "dist/index.d.ts",
+  "bin": {
+    "fire-env": "./bin/run.js"
+  },
+  "files": [
+    "/bin",
+    "/dist",
+    "/oclif.manifest.json"
+  ],
+  "scripts": {
+    "build": "shx rm -rf dist && tsc -b",
+    "lint": "eslint . --ext .ts",
+    "prepack": "yarn build && oclif manifest && oclif readme",
+    "postpack": "shx rm -f oclif.manifest.json",
+    "prepare": "yarn build",
+    "test": "mocha --forbid-only \"test/**/*.test.ts\"",
+    "posttest": "yarn lint",
+    "version": "oclif readme && git add README.md"
+  },
+  "oclif": {
+    "bin": "fire-env",
+    "commands": "./dist/commands",
+    "dirname": "fire-env",
+    "plugins": [
+      "@oclif/plugin-help",
+      "@oclif/plugin-plugins"
+    ],
+    "topicSeparator": " ",
+    "topics": {
+      "hello": {
+        "description": "Say hello to the world and others"
+      }
+    }
+  },
+  "dependencies": {
+    "@oclif/core": "^3",
+    "@oclif/plugin-help": "^6",
+    "@oclif/plugin-plugins": "^4"
+  },
+  "devDependencies": {
+    "@oclif/prettier-config": "^0.2.1",
+    "@oclif/test": "^3",
+    "@types/chai": "^4",
+    "@types/mocha": "^10",
+    "@types/node": "^18",
+    "chai": "^4",
+    "eslint": "^8",
+    "eslint-config-oclif": "^5",
+    "eslint-config-oclif-typescript": "^3",
+    "eslint-config-prettier": "^9.1.0",
+    "mocha": "^10",
+    "nyc": "^15.1.0",
+    "oclif": "^4.4.12",
+    "shx": "^0.3.4",
+    "ts-node": "^10.9.2",
+    "typescript": "^5"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}
